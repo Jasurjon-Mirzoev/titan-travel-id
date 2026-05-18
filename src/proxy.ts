@@ -4,7 +4,7 @@ import { jwtVerify } from "jose";
 
 const SECRET_KEY =
   process.env.JWT_SECRET ||
-  "fallback_secret_key_yang_sangat_panjang_dan_aman_123456";
+  "jtwtoken_titan.travel.2026";
 const key = new TextEncoder().encode(SECRET_KEY);
 
 async function decrypt(token: string) {

@@ -63,6 +63,36 @@ export default function Footer({ data }: { data?: any }) {
                 </svg>
               </a>
               <a
+                href="https://youtube.com/@titantravelpalembang"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-neutral-800 hover:bg-red-600 flex items-center justify-center transition-colors"
+                aria-label="YouTube"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+              </a>
+              <a
+                href="https://www.tiktok.com/@titan.travel.pa1embang"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-neutral-800 hover:bg-neutral-950 flex items-center justify-center transition-colors"
+                aria-label="TikTok"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.59 4.19.98 1.18 2.37 1.93 3.86 2.12v3.83c-1.39-.14-2.73-.69-3.83-1.57-.7-.56-1.28-1.28-1.72-2.1-.03 3.65-.03 7.3-.04 10.95-.1 1.39-.58 2.76-1.42 3.87-1.12 1.48-2.88 2.41-4.74 2.58-1.92.17-3.88-.41-5.32-1.68-1.49-1.31-2.31-3.26-2.22-5.23.09-2.02 1.08-3.92 2.72-5.11 1.41-1.02 3.16-1.47 4.9-1.27V9.73c-1.24-.15-2.52.12-3.56.84-1.02.7-1.7 1.83-1.84 3.07-.15 1.34.34 2.7 1.31 3.61.98.92 2.34 1.33 3.66 1.09 1.25-.23 2.35-1.1 2.87-2.25.26-.58.37-1.21.36-1.84V.02z" />
+                </svg>
+              </a>
+              <a
                 href="mailto:info@titantravel.co.id"
                 className="w-9 h-9 rounded-lg bg-neutral-800 hover:bg-accent-500 flex items-center justify-center transition-colors"
                 aria-label="Email"
