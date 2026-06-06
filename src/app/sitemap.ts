@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://titantravel.co.id";
 
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const packages = await prisma.tourPackage.findMany({
     where: { isPublished: true },

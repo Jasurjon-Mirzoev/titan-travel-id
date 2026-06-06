@@ -40,7 +40,7 @@ function LoginContent() {
       if (res.ok) {
         // Refresh agar proxy mendeteksi token baru
         router.refresh();
-        
+
         // Redirect berdasarkan role
         const role = data.user?.role;
         if (role === "ADMIN") {
@@ -104,7 +104,7 @@ function LoginContent() {
           </div>
 
           <div className="space-y-2">
-              <label className="text-sm font-semibold text-foreground">Password</label>
+            <label className="text-sm font-semibold text-foreground">Password</label>
             <div className="relative">
               <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-foreground-secondary" />
               <input
@@ -157,7 +157,7 @@ export default function LoginPage() {
       {/* Decorative Blur */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl pointer-events-none" />
-      
+
       <Suspense fallback={<div className="text-foreground">Memuat...</div>}>
         <LoginContent />
       </Suspense>
