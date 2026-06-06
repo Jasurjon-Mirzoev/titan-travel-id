@@ -4,9 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, User, Mail, Lock, Loader2 } from "lucide-react";
+import { useLocale } from "@/lib/LocaleContext";
+import { translations } from "@/lib/translations";
 
 export default function RegisterPage() {
   const router = useRouter();
+  const { locale } = useLocale();
+  const t = translations[locale]?.auth;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
@@ -57,9 +61,9 @@ export default function RegisterPage() {
                 Titan<span className="gradient-text">Travel</span>
               </h1>
             </Link>
-            <h2 className="text-2xl font-bold text-foreground">Daftar Akun Baru</h2>
+            <h2 className="text-2xl font-bold text-foreground">{t?.registerTitle || "Daftar Akun Baru"}</h2>
             <p className="text-foreground-secondary text-sm mt-2">
-              Mulailah petualangan luar biasa Anda bersama kami.
+              {t?.registerSubtitle || "Bergabung bersama Titan Travel hari ini."}
             </p>
           </div>
 
@@ -71,7 +75,7 @@ export default function RegisterPage() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-foreground ml-1">Nama Lengkap</label>
+              <label className="text-sm font-semibold text-foreground ml-1">{t?.nameLabel || "Nama Lengkap"}</label>
               <div className="relative">
                 <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-foreground-secondary" />
                 <input
@@ -85,7 +89,7 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-foreground ml-1">Email</label>
+              <label className="text-sm font-semibold text-foreground ml-1">{t?.emailLabel || "Email"}</label>
               <div className="relative">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-foreground-secondary" />
                 <input
@@ -113,7 +117,7 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-foreground ml-1">Password</label>
+              <label className="text-sm font-semibold text-foreground ml-1">{t?.passwordLabel || "Password"}</label>
               <div className="relative">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-foreground-secondary" />
                 <input
@@ -135,7 +139,7 @@ export default function RegisterPage() {
                 <Loader2 className="w-5 h-5 animate-spin" />
               ) : (
                 <>
-                  Daftar Sekarang
+                  {t?.registerBtn || "Daftar Sekarang"}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </>
               )}
@@ -143,9 +147,9 @@ export default function RegisterPage() {
           </form>
 
           <p className="mt-8 text-center text-sm text-foreground-secondary">
-            Sudah punya akun?{" "}
+            {t?.hasAccount || "Sudah punya akun?"}{" "}
             <Link href="/login" className="text-primary-500 font-semibold hover:underline">
-              Masuk di sini
+              {t?.loginHere || "Masuk di sini"}
             </Link>
           </p>
         </div>

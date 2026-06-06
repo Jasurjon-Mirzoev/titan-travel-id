@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { useLocale } from "@/lib/LocaleContext";
-import type { Locale } from "@/lib/translations";
+import { translations, type Locale } from "@/lib/translations";
 
 export default function Navbar({ data }: { data?: any }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -83,9 +83,8 @@ export default function Navbar({ data }: { data?: any }) {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass-solid shadow-lg py-3" : "bg-transparent py-5"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "glass-solid shadow-lg py-3" : "bg-transparent py-5"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -100,44 +99,41 @@ export default function Navbar({ data }: { data?: any }) {
 
           {/* Desktop Navigation */}
           {!isInnerPage && (
-          <div className="hidden lg:flex items-center gap-1">
-            {d.links &&
-              Array.isArray(d.links) &&
-              d.links.map((link: any, i: number) => (
-                <a
-                  key={i}
-                  href={link.href}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-primary-500/10 ${
-                    isScrolled
-                      ? "text-foreground-secondary hover:text-primary-500"
-                      : "text-white/80 hover:text-white"
-                  }`}
-                >
-                  {link.label}
-                </a>
-              ))}
-          </div>
+            <div className="hidden lg:flex items-center gap-1">
+              {d.links &&
+                Array.isArray(d.links) &&
+                d.links.map((link: any, i: number) => (
+                  <a
+                    key={i}
+                    href={link.href}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:bg-primary-500/10 ${isScrolled
+                        ? "text-foreground-secondary hover:text-primary-500"
+                        : "text-white/80 hover:text-white"
+                      }`}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+            </div>
           )}
 
           {/* Exchange Rate Badge */}
           {rates.loading ? (
             <div
-              className={`hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm text-xs font-medium border animate-pulse ${
-                isScrolled
+              className={`hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm text-xs font-medium border animate-pulse ${isScrolled
                   ? "bg-primary-500/5 border-primary-500/20 text-foreground-secondary"
                   : "bg-white/10 border-white/20 text-white/70"
-              }`}
+                }`}
             >
               <RefreshCw className="w-3 h-3 animate-spin" />
               {locale === "id" ? "Memuat Kurs..." : locale === "ms" ? "Memuatkan Kurs..." : "Loading Rate..."}
             </div>
           ) : rates.USD || rates.USD_TO_MYR ? (
             <div
-              className={`hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm text-xs font-medium border ${
-                isScrolled
+              className={`hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm text-xs font-medium border ${isScrolled
                   ? "bg-primary-500/5 border-primary-500/20 text-foreground-secondary"
                   : "bg-white/10 border-white/20 text-white/70"
-              }`}
+                }`}
             >
               <TrendingUp className="w-3 h-3 text-emerald-500" />
               <span className="opacity-70">USD</span>
@@ -164,9 +160,8 @@ export default function Navbar({ data }: { data?: any }) {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className={`p-1.5 sm:p-2 rounded-full transition-all duration-200 hover:bg-primary-500/10 ${
-                isScrolled ? "text-foreground-secondary" : "text-white/80"
-              }`}
+              className={`p-1.5 sm:p-2 rounded-full transition-all duration-200 hover:bg-primary-500/10 ${isScrolled ? "text-foreground-secondary" : "text-white/80"
+                }`}
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
@@ -178,23 +173,21 @@ export default function Navbar({ data }: { data?: any }) {
 
             {/* PERBAIKAN: Language Toggle - Tampil di HP & Klik Langsung (Direct Select) */}
             <div
-              className={`flex items-center gap-1.5 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold border transition-all duration-200 ${
-                isScrolled
+              className={`flex items-center gap-1.5 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold border transition-all duration-200 ${isScrolled
                   ? "border-card-border text-foreground-secondary"
                   : "border-white/30 text-white"
-              }`}
+                }`}
             >
               {(["id", "en", "ms"] as Locale[]).map((l) => (
                 <button
                   key={l}
                   onClick={() => setLocale(l)}
-                  className={`transition-all duration-200 ${
-                    locale === l
+                  className={`transition-all duration-200 ${locale === l
                       ? isScrolled
                         ? "opacity-100 text-primary-500 scale-110"
                         : "opacity-100 text-white scale-110 drop-shadow-md"
                       : "opacity-40 hover:opacity-80"
-                  }`}
+                    }`}
                   aria-label={`Ubah bahasa ke ${l.toUpperCase()}`}
                 >
                   {l.toUpperCase()}
@@ -207,11 +200,10 @@ export default function Navbar({ data }: { data?: any }) {
               <div className="hidden sm:flex items-center gap-2">
                 <div className="relative group">
                   <div
-                    className={`cursor-pointer flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300 ${
-                      isScrolled
+                    className={`cursor-pointer flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300 ${isScrolled
                         ? "bg-primary-500/5 border-primary-500/20 text-foreground hover:bg-primary-500/10"
                         : "bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-md"
-                    }`}
+                      }`}
                   >
                     <UserIcon className="w-3.5 h-3.5 text-primary-500" />
                     <span className="text-xs font-semibold truncate max-w-20">
@@ -293,28 +285,26 @@ export default function Navbar({ data }: { data?: any }) {
                   <Link
                     href="/login"
                     onMouseEnter={() => setHoveredAuth("login")}
-                    className={`relative z-10 w-20 text-center py-1.5 text-xs font-bold rounded-full transition-all duration-300 ${
-                      hoveredAuth === "login"
+                    className={`relative z-10 w-20 text-center py-1.5 text-xs font-bold rounded-full transition-all duration-300 ${hoveredAuth === "login"
                         ? "text-white"
                         : isScrolled
                           ? "text-foreground-secondary hover:text-primary-500"
                           : "text-white/80 hover:text-white"
-                    }`}
+                      }`}
                   >
-                    Masuk
+                    {translations[locale]?.navbar?.login || "Masuk"}
                   </Link>
                   <Link
                     href="/register"
                     onMouseEnter={() => setHoveredAuth("register")}
-                    className={`relative z-10 w-20 text-center py-1.5 text-xs font-bold rounded-full transition-all duration-300 ${
-                      hoveredAuth === "register" || !hoveredAuth
+                    className={`relative z-10 w-20 text-center py-1.5 text-xs font-bold rounded-full transition-all duration-300 ${hoveredAuth === "register" || !hoveredAuth
                         ? "text-white"
                         : isScrolled
                           ? "text-foreground-secondary hover:text-primary-500"
                           : "text-white/80 hover:text-white"
-                    } ${hoveredAuth === "register" || !hoveredAuth ? "scale-105" : "scale-100"}`}
+                      } ${hoveredAuth === "register" || !hoveredAuth ? "scale-105" : "scale-100"}`}
                   >
-                    Daftar
+                    {translations[locale]?.navbar?.register || "Daftar"}
                   </Link>
                 </div>
               </div>
@@ -323,9 +313,8 @@ export default function Navbar({ data }: { data?: any }) {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-              className={`lg:hidden p-1.5 sm:p-2 rounded-sm transition-colors ${
-                isScrolled ? "text-foreground" : "text-white"
-              }`}
+              className={`lg:hidden p-1.5 sm:p-2 rounded-sm transition-colors ${isScrolled ? "text-foreground" : "text-white"
+                }`}
               aria-label="Toggle menu"
             >
               {isMobileOpen ? (
@@ -348,11 +337,10 @@ export default function Navbar({ data }: { data?: any }) {
 
       {/* Mobile Menu Dropdown */}
       <div
-        className={`lg:hidden relative z-50 transition-all duration-300 ${
-          isMobileOpen
+        className={`lg:hidden relative z-50 transition-all duration-300 ${isMobileOpen
             ? "max-h-[calc(100dvh-4rem)] opacity-100 visible"
             : "max-h-0 opacity-0 invisible overflow-hidden"
-        }`}
+          }`}
       >
         <div className="glass-solid mt-2 mx-4 rounded-md p-4 shadow-xl border border-card-border max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain">
           {!isInnerPage && d.links &&
@@ -437,14 +425,14 @@ export default function Navbar({ data }: { data?: any }) {
                 onClick={handleLinkClick}
                 className="flex-1 inline-flex items-center justify-center py-2.5 rounded-sm border border-card-border text-foreground-secondary text-sm font-semibold hover:border-primary-500 hover:text-primary-500 transition-colors"
               >
-                Masuk
+                {translations[locale]?.navbar?.login || "Masuk"}
               </Link>
               <Link
                 href="/register"
                 onClick={handleLinkClick}
                 className="flex-1 inline-flex items-center justify-center py-2.5 rounded-sm bg-primary-500 hover:bg-primary-600 text-white text-sm font-semibold transition-colors"
               >
-                Daftar
+                {translations[locale]?.navbar?.register || "Daftar"}
               </Link>
             </div>
           )}

@@ -4,6 +4,9 @@ import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, Mail, Lock, Loader2, CheckCircle2, Eye, EyeOff } from "lucide-react";
+import { useLocale } from "@/lib/LocaleContext";
+import { translations } from "@/lib/translations";
+
 
 function LoginContent() {
   const router = useRouter();
@@ -16,6 +19,9 @@ function LoginContent() {
     password: "",
   });
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const { locale } = useLocale();
+  const t = translations[locale]?.auth;
+
 
   useEffect(() => {
     const msg = searchParams.get("success");
@@ -69,9 +75,9 @@ function LoginContent() {
               Titan<span className="gradient-text">Travel</span>
             </h1>
           </Link>
-          <h2 className="text-2xl font-bold text-foreground">Selamat Datang Kembali</h2>
+          <h2 className="text-2xl font-bold text-foreground">{t?.loginTitle || "Selamat Datang Kembali"}</h2>
           <p className="text-foreground-secondary text-sm mt-2">
-            Silakan masuk untuk mengelola perjalanan Anda.
+            {t?.loginSubtitle || "Silakan masuk untuk mengelola perjalanan Anda."}
           </p>
         </div>
 
@@ -90,7 +96,7 @@ function LoginContent() {
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-foreground ml-1">Email</label>
+            <label className="text-sm font-semibold text-foreground ml-1">{t?.emailLabel || "Email"}</label>
             <div className="relative">
               <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-foreground-secondary" />
               <input
@@ -104,7 +110,7 @@ function LoginContent() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-foreground">Password</label>
+            <label className="text-sm font-semibold text-foreground">{t?.passwordLabel || "Password"}</label>
             <div className="relative">
               <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-foreground-secondary" />
               <input
@@ -133,7 +139,7 @@ function LoginContent() {
               <Loader2 className="w-5 h-5 animate-spin" />
             ) : (
               <>
-                Masuk Sekarang
+                {t?.loginBtn || "Masuk Sekarang"}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </>
             )}
@@ -141,9 +147,9 @@ function LoginContent() {
         </form>
 
         <p className="mt-8 text-center text-sm text-foreground-secondary">
-          Belum punya akun?{" "}
+          {t?.noAccount || "Belum punya akun?"}{" "}
           <Link href="/register" className="text-primary-500 font-semibold hover:underline">
-            Daftar di sini
+            {t?.registerHere || "Daftar di sini"}
           </Link>
         </p>
       </div>
@@ -152,13 +158,16 @@ function LoginContent() {
 }
 
 export default function LoginPage() {
+  const { locale } = useLocale();
+  const t = translations[locale]?.auth;
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4 relative overflow-hidden">
       {/* Decorative Blur */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl pointer-events-none" />
 
-      <Suspense fallback={<div className="text-foreground">Memuat...</div>}>
+      <Suspense fallback={<div className="text-foreground">{t?.loading || "Memuat..."}</div>}>
         <LoginContent />
       </Suspense>
     </div>
